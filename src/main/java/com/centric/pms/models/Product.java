@@ -9,7 +9,8 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "products")
+@Table(name = "products", uniqueConstraints =
+@UniqueConstraint(columnNames = {"name", "brand"}))
 public class Product {
     @Id
     @GeneratedValue(generator = "uuid2")
@@ -17,8 +18,10 @@ public class Product {
     @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
+    @Column(nullable = false, length = 50)
     private String name;
     private String description;
+    @Column(nullable = false, length = 50)
     private String brand;
 
     @ManyToMany(fetch = FetchType.LAZY,

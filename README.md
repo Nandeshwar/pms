@@ -49,9 +49,9 @@ body:
 2. once we see container prompt, Run the command given below
     mysql -u centric -pcentric
 3. choose database
-    use products
-4. list tables;
-    show tables
+    use products;
+4. list tables
+    show tables;
 ```
 
 
