@@ -20,14 +20,14 @@ mvn clean test
 ## Check the application's status
 
 ```
-http://localhost:9696/v1/status
+http://localhost:9696/api/v1/status
 ```
 
 ## All API
 
 ```
-1. GET:  http://localhost:9696/v1/status
-2. POST: http://localhost:9696/v1/products
+1. GET:  http://localhost:9696/api/v1/status
+2. POST: http://localhost:9696/api/v1/products
 body:
 {
 	"name": "Red Shirt",
@@ -38,7 +38,7 @@ body:
 	],
 	"category": "apparel"
 }
-3. GET: http://localhost:9696/v1/products/search?category=AppareL&page=0&size=10
+3. GET: http://localhost:9696/api/v1/products/search?category=AppareL&page=0&size=10
 ```
 
 ## To check database entries
@@ -52,6 +52,14 @@ body:
     use products;
 4. list tables
     show tables;
+```
+
+### Troubleshoot error
+```
+1. Could not find or load main class org.apache.maven.wrapper.MavenWrapperMain
+  and reason is folder: .mvn missing
+  how to create: 
+  mvn -N io.takari:maven:wrapper
 ```
 
 

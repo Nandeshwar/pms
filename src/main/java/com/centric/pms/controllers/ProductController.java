@@ -14,34 +14,36 @@ import org.springframework.web.client.HttpStatusCodeException;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1/products")
 public class ProductController {
     Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     @Autowired
     ProductService productService;
 
-    @PostMapping(value = "/v1/products", produces = "application/json")
-    ResponseEntity<ProductDTO> newEmployee(@RequestBody ProductDTO product) {
+    @PostMapping(produces = "application/json")
+    ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO product) {
         ProductDTO response = new ProductDTO();
         try {
             response = productService.createProduct(product);
+            logger.info("product created successfully");
         } catch (HttpStatusCodeException he) {
             if (he.getStatusCode() == HttpStatus.BAD_REQUEST) {
-                logger.error("error creating product=%s".formatted(he.getMessage()));
+                logger.error("error creating product=%s".format(he.getMessage()));
                 return new ResponseEntity(HttpStatus.BAD_REQUEST);
             }
         } catch (DataIntegrityViolationException cve) {
-            logger.error("error creating product. constraint violation error=%s".formatted(cve.getMessage()));
+            logger.error("error creating product. constraint violation error=%s".format(cve.getMessage()));
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            logger.error("error creating product=%s".formatted(e.getMessage()));
+            logger.error("error creating product=%s".format(e.getMessage()));
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/v1/products/search", produces = "application/json")
-    ResponseEntity<List<ProductDTO>> newEmployee(@RequestParam String category, @RequestParam int page, @RequestParam int size) {
+    @GetMapping(value = "/search", produces = "application/json")
+    ResponseEntity<List<ProductDTO>> searchByCategory(@RequestParam String category, @RequestParam int page, @RequestParam int size) {
         return new ResponseEntity(productService.findProductByCategory(category, page, size), HttpStatus.OK);
     }
 }
