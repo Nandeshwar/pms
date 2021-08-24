@@ -40,7 +40,7 @@ public class ProductControllerTest {
     @Test
     @DisplayName("failure: product creation endpoint without body is bad request")
     public void whenNullValue_thenReturns400() throws Exception {
-        MvcResult mvcResult = this.mockMvc.perform(post("/v1/products")
+        MvcResult mvcResult = this.mockMvc.perform(post("/api/v1/products")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
@@ -50,7 +50,7 @@ public class ProductControllerTest {
     @Test
     @DisplayName("success: product creation endpoint")
     public void createProduct() throws Exception {
-        mockMvc.perform(post("/v1/products")
+        mockMvc.perform(post("/api/v1/products")
                 .content(asJsonString(new ProductDTO()))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -106,8 +106,8 @@ public class ProductControllerTest {
 
         when(productService.findProductByCategory("Apparel", 0, 1)).thenReturn(productList);
 
-        //MvcResult mvcResult = mockMvc.perform(get("/v1/products/search?category=AppareL&page=0&size=1")
-        MvcResult mvcResult = mockMvc.perform(get("/v1/products/search")
+        //MvcResult mvcResult = mockMvc.perform(get("/api/v1/products/search?category=AppareL&page=0&size=1")
+        MvcResult mvcResult = mockMvc.perform(get("/api/v1/products/search")
                 .param("category", "Apparel")
                 .param("page", "0")
                 .param("size", "1")
