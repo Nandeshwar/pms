@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpStatusCodeException;
 
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,7 +24,7 @@ public class ProductController {
     ProductService productService;
 
     @PostMapping(produces = "application/json")
-    ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO product) {
+    ResponseEntity<ProductDTO> createProduct(@Valid @RequestBody ProductDTO product) {
         ProductDTO response = new ProductDTO();
             response = productService.createProduct(product);
             logger.info("product created successfully");

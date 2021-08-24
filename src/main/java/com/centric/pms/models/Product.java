@@ -3,6 +3,7 @@ package com.centric.pms.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;

@@ -1,6 +1,9 @@
 package com.centric.pms.models.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,10 +11,14 @@ import java.util.UUID;
 
 public class ProductDTO {
     private UUID id;
+    @NotBlank(message = "name must not me blank")
     private String name;
+    @NotBlank(message = "description must not be blank")
     private String description;
+    @NotBlank
     private String brand;
     private Set<String> tags = new HashSet<>();
+    @NotBlank
     private String category;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
