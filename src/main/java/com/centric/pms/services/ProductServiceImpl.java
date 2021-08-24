@@ -1,5 +1,6 @@
 package com.centric.pms.services;
 
+import com.centric.pms.exception.NoDataFoundException;
 import com.centric.pms.models.Product;
 import com.centric.pms.models.Tag;
 import com.centric.pms.models.dto.ProductDTO;
@@ -55,6 +56,10 @@ public class ProductServiceImpl implements ProductService {
                             return productDto;
                         }
                 ).collect(Collectors.toList());
+
+        if(productDTOList.isEmpty()) {
+            throw new NoDataFoundException();
+        }
         return productDTOList;
     }
 }
