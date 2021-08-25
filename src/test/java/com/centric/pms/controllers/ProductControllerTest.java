@@ -50,8 +50,13 @@ public class ProductControllerTest {
     @Test
     @DisplayName("success: product creation endpoint")
     public void createProduct() throws Exception {
+        ProductDTO productDTO = new ProductDTO();
+        productDTO.setName("abc");
+        productDTO.setDescription("abc");
+        productDTO.setBrand("abc");
+        productDTO.setCategory("abc");
         mockMvc.perform(post("/api/v1/products")
-                .content(asJsonString(new ProductDTO()))
+                .content(asJsonString(productDTO))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());

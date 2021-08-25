@@ -54,6 +54,10 @@ body:
     show tables;
 ```
 
+### Running Single test using maven (https://maven.apache.org/surefire/maven-surefire-plugin/examples/single-test.html)
+```
+mvn -Dtest=ProductServiceTest test
+```
 ### Troubleshoot error
 ```
 1. Could not find or load main class org.apache.maven.wrapper.MavenWrapperMain
@@ -61,6 +65,8 @@ body:
   how to create: 
   mvn -N io.takari:maven:wrapper
 ```
+
+
 
 
 
